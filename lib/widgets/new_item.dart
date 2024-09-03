@@ -44,9 +44,7 @@ class _NewItemState extends State<NewItem> {
 
       final Map<String, dynamic> resData = json.decode(res.body);
 
-      if (!context.mounted) {
-        return;
-      }
+      if (!mounted) return;
 
       Navigator.of(context).pop(
         GroceryItem(
@@ -77,10 +75,7 @@ class _NewItemState extends State<NewItem> {
                   label: Text('Name'),
                 ),
                 validator: (value) {
-                  if (value == null ||
-                      value.isEmpty ||
-                      value.trim().length <= 1 ||
-                      value.trim().length > 50) {
+                  if (value == null || value.isEmpty || value.trim().length <= 1 || value.trim().length > 50) {
                     return 'Must be between 1 an 50 characters';
                   }
 
@@ -93,10 +88,7 @@ class _NewItemState extends State<NewItem> {
                   Expanded(
                     child: TextFormField(
                       validator: (value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            int.tryParse(value) == null ||
-                            int.tryParse(value)! <= 0) {
+                        if (value == null || value.isEmpty || int.tryParse(value) == null || int.tryParse(value)! <= 0) {
                           return 'Must be a valid positive number';
                         }
 
@@ -119,14 +111,14 @@ class _NewItemState extends State<NewItem> {
                           DropdownMenuItem(
                             value: category.value,
                             child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Container(
                                   width: 16,
                                   height: 16,
                                   color: category.value.color,
                                 ),
-                                const SizedBox(width: 6),
+                                const SizedBox(width: 8),
                                 Text(
                                   category.value.title,
                                 ),
